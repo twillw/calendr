@@ -1,0 +1,2 @@
+class DrAvailabilitiesController < ApplicationController
+end

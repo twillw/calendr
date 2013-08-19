@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  clinic_open: 2013-08-19 18:12:34
+  clinic_close: 2013-08-19 18:12:34
+  day: MyString
+  avg_appt_time: 1
+  doctor_id: 
+
+two:
+  clinic_open: 2013-08-19 18:12:34
+  clinic_close: 2013-08-19 18:12:34
+  day: MyString
+  avg_appt_time: 1
+  doctor_id: 
