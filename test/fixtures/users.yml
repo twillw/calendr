@@ -1,18 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+test1:
   name: MyString
-  email: MyString
-  phone_number: 1
+  email: test@example.com
+  phone_number: 5555555555
   address: MyString
   postal_code: MyString
   city: MyString
   province: MyString
 
-two:
+test2:
   name: MyString
-  email: MyString
-  phone_number: 1
+  email: test2@example.com
+  phone_number: 1111111111
   address: MyString
   postal_code: MyString
   city: MyString
