@@ -23,7 +23,7 @@ class DoctorsControllerTest < ActionController::TestCase
 
   test "should create new dr" do
     assert_difference "Doctor.count" do
-      post :create, user: @valid_dr
+      post :create, doctor: @valid_dr
     end
   end
 
