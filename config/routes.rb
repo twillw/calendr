@@ -5,9 +5,17 @@ FinalProject::Application.routes.draw do
 
   resources :dr_availabilities
 
-  resources :users
+  resources :users do
+    collection do
+      get '/login', to: "sessions#new"
+      post '/login', to: "sessions#create"
+      post '/logout', to: "sessions#destroy"
+    end
+  end
 
   resources :doctors
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

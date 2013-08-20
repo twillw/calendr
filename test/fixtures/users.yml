@@ -8,6 +8,7 @@ test1:
   postal_code: MyString
   city: MyString
   province: MyString
+  password_digest: password
 
 test2:
   name: MyString
