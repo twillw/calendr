@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
 
+  before_action: check_user_type
+
+
   def new
     @user = User.new
   end
@@ -32,6 +35,10 @@ class SessionsController < ApplicationController
       return true
     end
 
+  end
+
+  def check_user_type
+    
   end
 
 

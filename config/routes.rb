@@ -13,7 +13,13 @@ FinalProject::Application.routes.draw do
     end
   end
 
-  resources :doctors
+  resources :doctors do
+     collection do
+      get '/login', to: "sessions#new"
+      post '/login', to: "sessions#create"
+      post '/logout', to: "sessions#destroy"
+    end
+  end
 
 
 

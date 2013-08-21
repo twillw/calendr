@@ -3,20 +3,13 @@
   <%= flash[:error] %>
 <% end %>
 
-  <%= form_for @user, url: login_users_path do |f| %>
 
-    <div>
-      <%= f.label :email %>
-      <%= f.email_field :email %>
-    </div>
+<% if request.original_url == 'http://localhost:3000/users/login' %>
+  <%= render partial: 'form', locals: { person: @user, desired_url: login_users_path } %>
+<% elsif request.original_url == 'http://localhost:3000/doctors/login' %>
+  <%= render partial: 'form', locals: { person: @doctor, desired_url: login_doctors_path} %>
+<% end %>
 
-    <div>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </div>
-
-    <%= f.submit "Login" %>
-  <% end %>
 
 
   

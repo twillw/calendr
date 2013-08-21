@@ -1,0 +1,14 @@
+  <%= form_for person, url: desired_url do |f| %>
+
+    <div>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+    <%= f.submit "Login" %>
+  <% end %>
