@@ -45,6 +45,14 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
+  <div>
+    Patient
+    <%= f.radio_button(:type, "Patient") %>
+    Doctor
+    <%= f.radio_button(:type, "Doctor") %>
+    
+  </div>
+
   <%= f.submit button_name %>
 
 <% end %>

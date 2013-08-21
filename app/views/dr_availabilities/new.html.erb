@@ -1,0 +1,28 @@
+<h1>Please fill out your availablilites</h1>
+
+<% i = 0 %>
+<%= form_tag "/dr_availabilities" do %>
+  <% 7.times do %>
+
+  <div>
+    <h3><%= @days_of_the_week[i] %></h3>
+    <% i+=1 %>
+
+   <div>
+    Start time: <%= text_field_tag "dr_availabilities[][clinic_open]" %> am
+   </div>
+
+   <div>
+    End time: <%= text_field_tag "dr_availabilities[][clinic_close]" %> pm
+  </div>
+
+  <div>
+    Alotted appointment time in minutes: <%= text_field_tag "dr_availabilities[][avg_appt_time]" %>
+  </div>
+
+  </div>
+  <% end %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
+

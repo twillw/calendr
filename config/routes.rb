@@ -13,14 +13,6 @@ FinalProject::Application.routes.draw do
     end
   end
 
-  resources :doctors do
-     collection do
-      get '/login', to: "sessions#new"
-      post '/login', to: "sessions#create"
-      post '/logout', to: "sessions#destroy"
-    end
-  end
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

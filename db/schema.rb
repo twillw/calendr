@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820141940) do
+ActiveRecord::Schema.define(version: 20130821151158) do
 
   create_table "breaks", force: true do |t|
     t.time     "start_time"
@@ -24,19 +24,6 @@ ActiveRecord::Schema.define(version: 20130820141940) do
   end
 
   add_index "breaks", ["doctor_id"], name: "index_breaks_on_doctor_id"
-
-  create_table "doctors", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.integer  "phone_number"
-    t.string   "address"
-    t.string   "postal_code"
-    t.string   "city"
-    t.string   "province"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "password_digest"
-  end
 
   create_table "dr_availabilities", force: true do |t|
     t.time     "clinic_open"
@@ -74,8 +61,8 @@ ActiveRecord::Schema.define(version: 20130820141940) do
     t.string   "province"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_admin"
     t.string   "password_digest"
+    t.string   "type"
   end
 
 end

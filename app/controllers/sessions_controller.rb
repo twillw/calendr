@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
 
-  before_action: check_user_type
-
-
   def new
     @user = User.new
   end
@@ -11,8 +8,13 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:user][:email]) 
 
     if @user && login_valid?(@user)
-      session[:user_id] = @user.id
-      render text: "user page coming soon"
+      if @user.type == 'Doctor'
+        session[:doctor_id] = @user.id
+        redirect_to new_dr_availability_path
+      elsif @user.type == 'Patient'
+        session[:patient_id] = @user.id
+        render text: "patient logged in"
+      end
     else
       flash[:error] = "Invalid credentials, please try again."
       redirect_to login_users_path
@@ -34,12 +36,5 @@ class SessionsController < ApplicationController
     elsif user.authenticate(params[:user][:password])
       return true
     end
-
   end
-
-  def check_user_type
-    
-  end
-
-
 end

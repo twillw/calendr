@@ -28,11 +28,6 @@ class UsersControllerTest < ActionController::TestCase
     end
   end
 
-  test "default is_admin should be false when new user created" do
-    post :create, user: @valid_user
-    assert_equal false, assigns[:user].is_admin
-  end
-
   test "should get edit user" do
     get :edit, id: users(:test1)
     assert :success
