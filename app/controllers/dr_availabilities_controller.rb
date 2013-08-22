@@ -5,8 +5,12 @@ include DrAvailabilitiesHelper
   before_action :check_doctor_login
 
   def new
-    @dr_availability = DrAvailability.new
-    @days_of_the_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    if @current_doctor
+      @dr_availability = DrAvailability.new
+      @days_of_the_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    else 
+      redirect_to login_users_path, notice: "You must me logged in as a Doctor to create a new Dr Schedule"
+    end
   end
 
   def create
