@@ -19,15 +19,17 @@ class DrAvailabilitiesControllerTest < ActionController::TestCase
     assert_redirected_to login_users_path
   end
 
-  test "should get form" do
-    visit('/dr_availabilities')
+  test "should create new DrAvailability" do
+    assert_difference "DrAvailability.count" do
+      schedule = dr_availabilities(:one)
+      login_as(users(:test2))
+      DrAvailability.create!(clinic_open: schedule.clinic_open, clinic_close: schedule.clinic_close, avg_appt_time: schedule.avg_appt_time, doctor_id: session[:doctor_id])
+    end
+  end
+
+  test "should get edit" do
+    get :edit
     assert :success
   end
 
-
-  private
-
-  def login_as(user)
-    session[:user_id] = user.id
-  end
 end

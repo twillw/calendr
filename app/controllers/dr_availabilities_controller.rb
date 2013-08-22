@@ -15,7 +15,9 @@ include DrAvailabilitiesHelper
 
   def create
     create_availabilities_for_each_day(params)
+  end
 
+  def edit
   end
 
   private

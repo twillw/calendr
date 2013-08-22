@@ -8,7 +8,7 @@ test1:
   postal_code: MyString
   city: MyString
   province: MyString
-  password_digest: password
+  password_digest: <%= BCrypt::Password.create("password") %>
   type: Patient
 
 test2:
@@ -19,5 +19,5 @@ test2:
   postal_code: MyString
   city: MyString
   province: MyString
-  password_digest: password
+  password_digest: <%= BCrypt::Password.create("password") %>
   type: Doctor
