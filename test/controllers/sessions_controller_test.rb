@@ -7,9 +7,14 @@ class SessionsControllerTest < ActionController::TestCase
     assert :success
   end
 
-  test "user should be able to login with valid credentials" do
+  test "patient should be able to login with valid credentials" do
     post :create, user: {email: "test@example.com", password_digest: "password"}
-    assert_equal session[:user_id], users(:test1).id
+    assert_equal session[:patient_id], users(:test1).id
+  end
+
+  test "doctor should be able to login with valid credentials" do
+    post :create, user: {email: "test2@example.com", password_digest: "password"}
+    assert_equal session[:doctor_id], users(:test2).id
   end
 
   test "should not set session with invalid credentials" do

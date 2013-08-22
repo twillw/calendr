@@ -2,7 +2,7 @@ class DrAvailabilitiesController < ApplicationController
 
 include DrAvailabilitiesHelper
 
-  before_action :check_user_login
+  before_action :check_doctor_login
 
   def new
     @dr_availability = DrAvailability.new

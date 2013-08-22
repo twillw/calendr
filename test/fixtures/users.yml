@@ -9,6 +9,7 @@ test1:
   city: MyString
   province: MyString
   password_digest: password
+  type: Patient
 
 test2:
   name: MyString
@@ -18,3 +19,5 @@ test2:
   postal_code: MyString
   city: MyString
   province: MyString
+  password_digest: password
+  type: Doctor

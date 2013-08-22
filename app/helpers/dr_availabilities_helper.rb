@@ -16,7 +16,7 @@ module DrAvailabilitiesHelper
   def check_doctor_login
     if session[:doctor_id] == nil
       redirect_to login_users_path
-    @current_doctor = session[:doctor_id]
+      @current_doctor = session[:doctor_id]
     end
   end
 end
