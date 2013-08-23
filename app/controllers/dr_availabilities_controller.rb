@@ -4,10 +4,11 @@ include DrAvailabilitiesHelper
 
   before_action :check_doctor_login
 
+  respond_to :json
+
   def index
-    unless @current_doctor
-      redirect_to login_users_path, notice: "You must me logged in as a Doctor to create a new Dr Schedule"
-    end
+    @dr_availability = DrAvailability.find(session[:doctor_id])
+    respond_with @dr_availability
   end
 
   def new
@@ -21,7 +22,10 @@ include DrAvailabilitiesHelper
 
   def create
     create_availabilities_for_each_day(params)
+    redirect_to dr_availability_path
+  end
 
+  def edit
   end
 
   private

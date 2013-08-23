@@ -6,7 +6,7 @@
 
   <div>
     <h3><%= @days_of_the_week[i] %></h3>
-    <% i+=1 %>
+    
 
    <div>
     Start time: <%= text_field_tag "dr_availabilities[][clinic_open]" %> am
@@ -19,6 +19,7 @@
   <div>
     Alotted appointment time in minutes: <%= text_field_tag "dr_availabilities[][avg_appt_time]" %>
   </div>
+  <% i+=1 %>
 
   </div>
   <% end %>

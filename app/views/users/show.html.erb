@@ -1,0 +1,5 @@
+<h1><%= @current_user.name %></h1>
+
+<% if @current_user.type == "Doctor" %>
+  <%= link_to "Click to view your clinic's schedule", dr_availabilities_path %>
+<% end %>

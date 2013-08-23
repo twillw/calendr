@@ -1,14 +1,12 @@
-<h1>Patient Login</h1>
+<h1>Login</h1>
 <% if flash[:error] %>
   <%= flash[:error] %>
 <% end %>
 
 
-<% if request.original_url == 'http://localhost:3000/users/login' %>
+
   <%= render partial: 'form', locals: { person: @user, desired_url: login_users_path } %>
-<% elsif request.original_url == 'http://localhost:3000/doctors/login' %>
-  <%= render partial: 'form', locals: { person: @doctor, desired_url: login_doctors_path} %>
-<% end %>
+
 
 
 
