@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
-
+  before_action :check_user_login, except: [:create]
+  
   def new
-    @user = User.new
+      @user = User.new
   end
 
   def create
@@ -10,13 +11,13 @@ class SessionsController < ApplicationController
     if @user && login_valid?(@user)
       if @user.type == 'Doctor'
         session[:doctor_id] = @user.id
-        redirect_to new_dr_availability_path
+        redirect_to user_path(@user)
       elsif @user.type == 'Patient'
         session[:patient_id] = @user.id
-        render text: "patient logged in"
+        redirect_to user_path(@user)
       end
     else
-      flash[:error] = "Invalid credentials, please try again."
+      flash[:error] = "Invalid login, please try again."
       redirect_to login_users_path
     end
   end

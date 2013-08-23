@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
 
+  before_action :check_user_login, except: [:new, :create]
+  
+  def index
+
+  end
+
   def new
     @user = User.new
   end
@@ -11,6 +17,10 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+
   end
 
   def edit

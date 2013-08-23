@@ -15,6 +15,7 @@ class SessionsControllerTest < ActionController::TestCase
   test "doctor should be able to login with valid credentials" do
     post :create, user: {email: "test2@example.com", password_digest: "password"}
     assert_equal session[:doctor_id], users(:test2).id
+    assert_redirected_to user_path(assigns(:user))
   end
 
   test "should not set session with invalid credentials" do
@@ -25,7 +26,7 @@ class SessionsControllerTest < ActionController::TestCase
   test "should empty the current session" do
     login_as(users(:test1))
     get :destroy
-    assert_equal session[:user_id], nil
+    assert_equal session[:patient_id], nil
   end
 
 

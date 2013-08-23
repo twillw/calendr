@@ -4,23 +4,29 @@ class DrAvailabilitiesControllerTest < ActionController::TestCase
   
   test "should get form for when doctor logged in new dr_availablilities" do
     login_as(users(:test2))
-    get :new
+    get :index
     assert :success
   end
 
   test "should be redirected from dr_availabilities if logged in as patient" do
     login_as(users(:test1))
-    get :new
+    get :index
     assert_redirected_to login_users_path
   end
 
   test "should be redirected from dr_availabilities if not logged in" do
-    get :new
+    get :index
     assert_redirected_to login_users_path
   end
 
   test "should get form" do
     visit('/dr_availabilities')
+    assert :success
+  end
+
+  test "should get index when logging in as doctor" do
+    login_as(users(:test2))
+    get :index
     assert :success
   end
 

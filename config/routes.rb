@@ -9,7 +9,7 @@ FinalProject::Application.routes.draw do
     collection do
       get '/login', to: "sessions#new"
       post '/login', to: "sessions#create"
-      post '/logout', to: "sessions#destroy"
+      get '/logout', to: "sessions#destroy"
     end
   end
 

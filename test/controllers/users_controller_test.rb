@@ -13,6 +13,7 @@ class UsersControllerTest < ActionController::TestCase
                             postal_code: "k0a1l0",
                             city: "Some_city",
                             province: "Ontario"
+                            type: "Doctor"
     }
   end 
 
@@ -21,6 +22,12 @@ class UsersControllerTest < ActionController::TestCase
     get :new
     assert :success    
   end
+
+  test "should redirect to login page if user not logged in" do
+    get :show
+    assert_redirected_to login_users_path
+  end
+
 
   test "should create new user" do
     assert_difference "User.count" do
@@ -37,6 +44,16 @@ class UsersControllerTest < ActionController::TestCase
     patch :update, id: users(:test1), user: @valid_user
 
     assert_equal assigns[:user].name, "valid_name"
+  end
+
+  private
+
+  def login_as(user)
+    if user.type == "Doctor"
+      session[:doctor_id] = user.id
+    else
+      session[:user_id] = user.id
+    end
   end
 
 end
