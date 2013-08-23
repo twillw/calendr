@@ -4,6 +4,10 @@ include DrAvailabilitiesHelper
 
   before_action :check_doctor_login
 
+  def index
+
+  end
+  
   def new
     if @current_doctor
       @dr_availability = DrAvailability.new
