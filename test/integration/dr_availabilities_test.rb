@@ -1,6 +1,6 @@
-require 'test_helper'
+# require 'test_helper'
 
-class DrAvailabilitiesTest < Capybara::Rails::TestCase
+# class DrAvailabilitiesTest < Capybara::Rails::TestCase
 
 
-end
+# end

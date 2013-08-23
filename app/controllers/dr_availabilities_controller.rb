@@ -2,9 +2,9 @@ class DrAvailabilitiesController < ApplicationController
 
 include DrAvailabilitiesHelper
 
-  before_action :check_doctor_login
+  before_action :check_user_login
 
-  respond_to :json
+  respond_to :html, :json
 
   def index
     @dr_availability = DrAvailability.find(session[:doctor_id])
