@@ -3,6 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 #Getting capybara ready for use
 #require "capybara/rails"
+# require "capybara/rails"
 # require "minitest/rails/capybara"
 
 class ActiveSupport::TestCase
