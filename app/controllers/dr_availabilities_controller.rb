@@ -2,17 +2,17 @@ class DrAvailabilitiesController < ApplicationController
 
 include DrAvailabilitiesHelper
 
-  before_action :check_doctor_login
+  before_action :check_user_login
 
-  respond_to :json
+  respond_to :html, :json
 
   def index
-    @dr_availability = DrAvailability.find(session[:doctor_id])
-    respond_with @dr_availability
+    @dr_availabilities = DrAvailability.where(doctor_id: session[:doctor_id])
+    respond_with @dr_availabilities
   end
 
   def new
-    if @current_doctor
+    if @current_user.type == "Doctor"
       @dr_availability = DrAvailability.new
       @days_of_the_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
     # else 
@@ -22,7 +22,7 @@ include DrAvailabilitiesHelper
 
   def create
     create_availabilities_for_each_day(params)
-    redirect_to dr_availability_path
+    redirect_to dr_availabilities_path
   end
 
   def edit

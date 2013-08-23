@@ -16,11 +16,36 @@
 #= require twitter/bootstrap
 #= require_tree .
 
+formatTime = (time) ->
+  if time[11] == "0"
+    time.slice(12,16)
+  else
+    time.slice(11,16)
+
+
 $ ->
-  $("#calendar").fullCalendar dayClick: (date, allDay, jsEvent, view) ->
-    alert "Clicked on the slot: " + date
-    
-    # change the day's background color just for fun
-    $(this).css "background-color", "red"
+  $("#calendar").fullCalendar
+    dayClick: ->
+      singleDay = $('#single-day')
+      singleDay.html(' ')
+      $(singleDay).fullCalendar
+        defaultView: 'agendaDay'  
+          
+
+  $.ajax 
+    url: "/dr_availabilities.json"
+    dataType: 'json'
+    success: (drAvailabilities) -> 
+      for result in drAvailabilities
+        day = result.day.slice(0,3)
+        clinic_open = formatTime(result.clinic_open)+"am"
+        clinic_close = formatTime(result.clinic_close)+"pm"
+        if clinic_open != null
+          $('.fc-'+day).not('.fc-day-header').append(clinic_open + '-' + clinic_close)
+
+  
+
+
+      
 
 
