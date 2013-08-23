@@ -17,6 +17,10 @@
 #= require_tree .
 
 $ ->
-  $("#calendar").fullCalendar ->
-    console.log("document is ready")
+  $("#calendar").fullCalendar dayClick: (date, allDay, jsEvent, view) ->
+    alert "Clicked on the slot: " + date
+    
+    # change the day's background color just for fun
+    $(this).css "background-color", "red"
+
 

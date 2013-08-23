@@ -4,10 +4,13 @@ include DrAvailabilitiesHelper
 
   before_action :check_doctor_login
 
-  def index
+  respond_to :json
 
+  def index
+    @dr_availability = DrAvailability.find(session[:doctor_id])
+    respond_with @dr_availability
   end
-  
+
   def new
     if @current_doctor
       @dr_availability = DrAvailability.new
@@ -19,6 +22,7 @@ include DrAvailabilitiesHelper
 
   def create
     create_availabilities_for_each_day(params)
+    redirect_to dr_availability_path
   end
 
   def edit
