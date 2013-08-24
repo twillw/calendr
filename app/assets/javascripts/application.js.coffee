@@ -24,13 +24,32 @@ formatTime = (time) ->
 
 
 $ ->
-  $("#calendar").fullCalendar
-    dayClick: ->
-      singleDay = $('#single-day')
-      singleDay.html(' ')
-      $(singleDay).fullCalendar
-        defaultView: 'agendaDay'  
-          
+  tempVar = ""
+  
+  $("#calendar")
+    .fullCalendar
+      dayClick: (date) ->
+        
+        #changing colour of selected cells only
+        if tempVar == ""
+          $(this).css('background-color', 'grey')
+          tempVar = this
+        else
+          $(this).css('background-color', 'grey')
+          $(tempVar).css('background-color', 'white')
+          tempVar = this
+
+        #setting single-day calendar attributes
+        singleDay = $("#single-day")
+        singleDay.html(' ')
+        $(singleDay)
+          .fullCalendar
+            defaultView: 'agendaDay'
+            allDaySlot: false
+            firstHour: 9
+            slotMinutes: 60
+          #sets single-day calendar to date selected in full calendar
+          .fullCalendar('gotoDate', date)
 
   $.ajax 
     url: "/dr_availabilities.json"
