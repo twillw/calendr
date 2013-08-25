@@ -1,11 +1,11 @@
-<h1>Login</h1>
-<% if flash[:error] %>
-  <%= flash[:error] %>
-<% end %>
+<div class="col-md-4 col-md-offset-4">
+  <h1>Login</h1>
+  <% if flash[:error] %>
+    <%= flash[:error] %>
+  <% end %>
 
-
-
-  <%= render partial: 'form', locals: { person: @user, desired_url: login_users_path } %>
+<%= render partial: 'form', locals: { person: @user, desired_url: login_users_path } %>
+</div>
 
 
 

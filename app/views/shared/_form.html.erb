@@ -1,58 +1,99 @@
-<%= form_for person, url: path do |f| %>
+  <%= form_for person, url: path, html: {class: "form-horizontal"} do |f| %>
 
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+    <div class="form-group">
+      <div class="col-lg-2 text-right">
+        <%= f.label :name, class: "control-label" %>
+      </div>
+      <div class="col-lg-8 text-right">
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
+    <div class="form-group">
+      <div class="col-lg-2 text-right">
+        <%= f.label :email, class: "control-label" %>
+      </div>
+      <div class="col-lg-8 text-right">
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
-  </div>
+   <div class="form-group">
+      <div class="col-lg-2 text-right">
+        <%= f.label :phone_number, class: "control-label"%>
+      </div>
+      <div class="col-lg-8 text-right">
+        <%= f.text_field :phone_number, class: "form-control" %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </div>
+    <div class="form-group">
+      <div class="col-lg-2 text-right">
+        <%= f.label :address, class: "control-label" %>
+      </div>
+      <div class="col-lg-8 text-right">
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-  </div>
+    <div class="form-group">
+      <div class="col-lg-2 text-right">
+        <%= f.label :city, class: "control-label" %>
+      </div>
+      <div class="col-lg-8 text-right">  
+        <%= f.text_field :city, class: "form-control" %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :province %>
-    <%= f.text_field :province %>
-  </div>
+    <div class="form-group">
+      <div class="col-lg-2 text-right">
+        <%= f.label :province, class: "control-label" %>
+      </div>
+      <div class="col-lg-8 text-right">  
+        <%= f.text_field :province, class: "form-control" %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :postal_code %>
-    <%= f.text_field :postal_code %>
-  </div>
+    <div class="form-group">
+      <div class="col-lg-2 text-right">
+        <%= f.label :postal_code, class: "control-label" %>
+      </div>
+      <div class="col-lg-4 text-right">  
+        <%= f.text_field :postal_code, class: "form-control" %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+    <div class="form-group">
+      <div class="col-lg-2 text-right">
+        <%= f.label :password, class: "control-label" %>
+      </div>
+      <div class="col-lg-8 text-right">
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-2 text-right">
+        <%= f.label :password_confirmation, class: "control-label" %>
+      </div>
+      <div class="col-lg-8 text-right">
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+    </div>
 
     <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+      Patient
+      <%= f.radio_button(:type, "Patient") %>
+      Doctor
+      <%= f.radio_button(:type, "Doctor") %>
+      
+    </div>
 
-  <div>
-    Patient
-    <%= f.radio_button(:type, "Patient") %>
-    Doctor
-    <%= f.radio_button(:type, "Doctor") %>
-    
-  </div>
+    <div class="form-group">
+      <div class="col-lg-10 center">
+        <%= f.submit button_name, class: "btn btn-default"%>
+      </div>
+    </div>
 
-  <%= f.submit button_name %>
-
-<% end %>
+  <% end %>
+</div>
