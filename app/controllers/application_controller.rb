@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   def check_user_login
      if session[:patient_id]
        @current_user = User.find(session[:patient_id])
+       @dr_schedule_made = []
      elsif session[:doctor_id]
        @current_user = User.find(session[:doctor_id])
        @dr_schedule_made = DrAvailability.where(doctor_id: @current_user)
