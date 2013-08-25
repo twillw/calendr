@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    
+    @dr_availabilities = DrAvailability.where(id: @current_user)
   end
 
   def edit
