@@ -1,29 +1,33 @@
-<h1>Please fill out your availablilites</h1>
+<div class="row">
+  <h1>Welcome <%= @current_user.name %>!</h1>
+  <h4 align="center">Please Take a Few Minutes to Setup Your Online Clinic</h4>
+</div>
 
-<% i = 0 %>
-<%= form_tag "/dr_availabilities" do %>
-  <% 7.times do %>
+<div class="row">
+  <% i = 0 %>
+  <%= form_tag "/dr_availabilities", html: {class: "form-horizontal"} do %>
+    <% 7.times do %>
 
-  <div>
-    <h3><%= @days_of_the_week[i] %></h3>
-    
+    <div>
+      <h3><%= @days_of_the_week[i] %></h3>
+      <div>
+        Clinic Open: <%= text_field_tag "dr_availabilities[][clinic_open]" %> am
+      </div>
 
-   <div>
-    Start time: <%= text_field_tag "dr_availabilities[][clinic_open]" %> am
-   </div>
+      <div>
+        Clinic Close: <%= text_field_tag "dr_availabilities[][clinic_close]" %> pm
+      </div>
 
-   <div>
-    End time: <%= text_field_tag "dr_availabilities[][clinic_close]" %> pm
-  </div>
+      <div>
+        Alotted appointment time in minutes: <%= text_field_tag "dr_availabilities[][avg_appt_time]" %>
+      </div>
+      
+      <% i+=1 %>
 
-  <div>
-    Alotted appointment time in minutes: <%= text_field_tag "dr_availabilities[][avg_appt_time]" %>
-  </div>
-  <% i+=1 %>
-
-  </div>
+    </div>
+    <% end %>
+    <%= submit_tag "Submit" %>
   <% end %>
-  <%= submit_tag "Submit" %>
-<% end %>
+</div>
 
 

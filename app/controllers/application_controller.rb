@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
        @dr_schedule_made = DrAvailability.where(doctor_id: @current_user)
      end
   end
+
+  def check_dr_schedule_made
+    if @current_user.type=="Doctor" && !@dr_schedule_made.any?
+      redirect_to new_dr_availability_path
+    end
+  end
 end

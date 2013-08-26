@@ -1,12 +1,11 @@
 <!-- links to show if user is a doctor and has previously made a schedule -->
 
-    <address>
-      <h3><%= @current_user.name %></h3>
-      <%= @current_user.address %><br>
-      <%= @current_user.city%>, <%= @current_user.province %><br>
-      <%= @current_user.postal_code %><br>
-      <abbr title="Phone">P: </abbr><%= @current_user.phone_number %>
-    </address>
-  </div>
+<div>
+  <address>
+    <h4><%= @current_user.name %></h4>
+    <%= @current_user.address %><br>
+    <%= @current_user.city%>, <%= @current_user.province %><br>
+    <%= @current_user.postal_code %><br>
+    <abbr title="Phone">P: </abbr><%= @current_user.phone_number %>
+  </address>
 </div>
-  
