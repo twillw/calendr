@@ -4,7 +4,6 @@ FinalProject::Application.routes.draw do
   resources :breaks
 
   resources :dr_availabilities
-
   resources :users do
     collection do
       get '/login', to: "sessions#new"

@@ -11,6 +11,21 @@ include DrAvailabilitiesHelper
     respond_with @dr_availabilities
   end
 
+  def show
+    @current_date = params[:clicked_date]
+    puts "[show] @current_date = #{@current_date}"
+    if @current_date
+      @current_day = get_day_of_week_from_date(@current_date)
+      @appointment_times = split_schedule_into_appts(@current_day)
+      puts "[show] @current_day = #{@current_day}"
+      puts "[show] @appointment_times.inspect = #{@appointment_times.inspect}"
+      # respond_with @appointment_times
+      render 'show', layout: false
+    end
+    # split_schedule_into_appts(params[:clicked_date])
+  end
+
+
   def new
     if @current_user.type == "Doctor"
       @dr_availability = DrAvailability.new

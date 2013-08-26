@@ -29,27 +29,33 @@ $ ->
   $("#calendar")
     .fullCalendar
       dayClick: (date) ->
-        
         #changing colour of selected cells only
-        if tempVar == ""
-          $(this).css('background-color', 'grey')
-          tempVar = this
-        else
-          $(this).css('background-color', 'grey')
-          $(tempVar).css('background-color', 'white')
-          tempVar = this
-
+        # if tempVar == ""
+        #   $(this).css('background-color', 'grey')
+        #   tempVar = this
+        # else
+        #   $(this).css('background-color', 'grey')
+        #   $(tempVar).css('background-color', 'white')
+        #   tempVar = this
+        $.ajax 
+          data: 
+            clicked_date: date 
+          type: 'get'
+          url: "/dr_availabilities/show"
+          success: (schedule) ->
+            text = $.get('/dr_availabilities/show')
+            $('#single-day').html(schedule)
         #setting single-day calendar attributes
-        singleDay = $("#single-day")
-        singleDay.html(' ')
-        $(singleDay)
-          .fullCalendar
-            defaultView: 'agendaDay'
-            allDaySlot: false
-            firstHour: 9
-            slotMinutes: 60
-          #sets single-day calendar to date selected in full calendar
-          .fullCalendar('gotoDate', date)
+        # singleDay = $("#single-day")
+        # singleDay.html(' ')
+        # $(singleDay)
+        #   .fullCalendar
+        #     defaultView: 'agendaDay'
+        #     allDaySlot: false
+        #     firstHour: 9
+        #     slotMinutes: 60
+        #   #sets single-day calendar to date selected in full calendar
+        #   .fullCalendar('gotoDate', date)
 
   $.ajax 
     url: "/dr_availabilities.json"
