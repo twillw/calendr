@@ -1,0 +1,16 @@
+<div class = "row">
+  <ul class="nav nav-pills nav-stacked">
+      
+      <% if @dr_schedule_made.any? && @current_user.type == "Doctor" %>
+        <li class="<%= 'active' if current_page?(user_path(@current_user)) %>"> <%= link_to "Profile", user_path(@current_user)%></li>
+        <li class="<%= 'active' if current_page?(dr_availabilities_path)%>"> <%= link_to "View Schedule", dr_availabilities_path %></li>
+
+
+      <!-- links to show if a patient has logged in -->
+      <% elsif @current_user.type=="Patient" %>
+        <li class="<%= 'active' if current_page?(user_path(@current_user)) %>"> <%= link_to "Profile", user_path(@current_user)%></li>
+        <li class="<%= 'active' if current_page?(patient_appointment_path(@current_user))%>"><%= link_to "View Appointments", patient_appointment_path(@current_user) %></li>
+      <% end %>
+  </ul>
+</div>
+  
