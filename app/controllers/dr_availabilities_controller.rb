@@ -9,8 +9,6 @@ class DrAvailabilitiesController < ApplicationController
 
   def index
     @dr_availabilities = DrAvailability.where(doctor_id: @current_doctor)
-    puts "[show] #{@current_doctor}"
-    puts "[show] #{@dr_availabilities.inspect}"
     respond_with @dr_availabilities
   end
 

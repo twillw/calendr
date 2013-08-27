@@ -16,6 +16,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  test "should check if time is booked" do
+  end
+
   private
 
   def login_as(user)
@@ -26,10 +29,4 @@ class ActiveSupport::TestCase
    end
   end
 
-  def integration_login_as(user)
-    visit login_users_path
-    fill_in(:user_email, with: user.email)
-    fill_in(:user_password, with: "password")
-    click_button("Login")
-  end
 end

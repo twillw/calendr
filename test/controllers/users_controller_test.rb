@@ -24,7 +24,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should redirect to login page if user not logged in" do
-    get :show
+    get :show, id: users(:test1)
     assert_redirected_to login_users_path
   end
 
@@ -36,11 +36,13 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get edit user" do
+    login_as(users(:test1))
     get :edit, id: users(:test1)
     assert :success
   end
 
   test "should update user with new params" do
+    login_as(users(:test1))
     patch :update, id: users(:test1), user: @valid_user
 
     assert_equal assigns[:user].name, "valid_name"
@@ -52,7 +54,7 @@ class UsersControllerTest < ActionController::TestCase
     if user.type == "Doctor"
       session[:doctor_id] = user.id
     else
-      session[:user_id] = user.id
+      session[:patient_id] = user.id
     end
   end
 
