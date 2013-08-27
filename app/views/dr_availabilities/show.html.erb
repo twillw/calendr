@@ -7,7 +7,11 @@
     <table>
       <tr>
         <td><%= time.strftime("%H:%M") %><td>
-        <td><%= link_to "Book Appointment", new_patient_appointment_path(time: formatted_time, date: @current_date.to_date, doctor_id: @current_doctor) %></td>
+          <% if time_booked?(time, @current_date, @dr_availability) %>
+            <td><%= link_to "Book Appointment", new_patient_appointment_path(time: formatted_time, date: @current_date.to_date, doctor_id: @current_doctor) %></td>
+          <% else %>
+            <td>Time unavailable</td>
+          <% end %>
       </tr>
     </table>
     <% end %>

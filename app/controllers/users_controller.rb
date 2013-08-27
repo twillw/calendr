@@ -21,7 +21,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    if !@current_user
+      redirect_to login_users_path
     #@dr_availabilities = DrAvailability.where(id: @current_user)
+    end
   end
 
   def edit
