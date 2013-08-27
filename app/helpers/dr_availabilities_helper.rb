@@ -2,11 +2,9 @@ module DrAvailabilitiesHelper
 
   def create_availabilities_for_each_day(params)
     @days_of_the_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
-    i = 0
-    while i < 7
+    @days_of_the_week.each_with_index do |day, i|
       @dr_availability = DrAvailability.new(clinic_open: params[:dr_availabilities][i][:clinic_open], clinic_close: params[:dr_availabilities][i][:clinic_close], avg_appt_time: params[:dr_availabilities][i][:avg_appt_time], day: @days_of_the_week[i], doctor_id: @current_user.id)
       @dr_availability.save
-      i += 1
     end
   end
 
@@ -27,14 +25,16 @@ module DrAvailabilitiesHelper
     current_day_of_the_week
   end
 
-    def split_schedule_into_appts(day)
-    @current_schedule = DrAvailability.find_by(doctor_id: @current_user, day: day)
-    appt_times = []
-    time = @current_schedule.clinic_open
-    while time < @current_schedule.clinic_close
-      appt_times.push(time)
-      time += @current_schedule.avg_appt_time.minutes
+  def split_schedule_into_appts(day)
+    @current_schedule = DrAvailability.find_by(doctor_id: @current_doctor, day: day)
+    if @current_schedule.clinic_open != nil
+      appt_times = []
+      time = @current_schedule.clinic_open
+      while time < @current_schedule.clinic_close
+        appt_times.push(time)
+        time += @current_schedule.avg_appt_time.minutes
+      end
+      appt_times
     end
-    appt_times
   end
 end

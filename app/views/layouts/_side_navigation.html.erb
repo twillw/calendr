@@ -10,6 +10,8 @@
       <% elsif @current_user.type=="Patient" %>
         <li class="<%= 'active' if current_page?(user_path(@current_user)) %>"> <%= link_to "Profile", user_path(@current_user)%></li>
         <li class="<%= 'active' if current_page?(patient_appointment_path(@current_user))%>"><%= link_to "View Appointments", patient_appointment_path(@current_user) %></li>
+        <li class="<%= 'active' if current_page?(patient_appointment_path(@current_user))%>"><%= link_to "Choose a Doctor", users_path %>
+        </li>
       <% end %>
   </ul>
 </div>

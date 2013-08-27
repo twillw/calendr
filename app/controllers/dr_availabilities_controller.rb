@@ -1,30 +1,31 @@
 class DrAvailabilitiesController < ApplicationController
 
-include DrAvailabilitiesHelper
+  include DrAvailabilitiesHelper
 
-  before_action :check_user_login
+  before_action :check_current_doctor
+  before_action :check_user_login, except: [:index]
 
   respond_to :html, :json
 
   def index
-    @dr_availabilities = DrAvailability.where(doctor_id: session[:doctor_id])
-    respond_with @dr_availabilities
+    @dr_availabilities = DrAvailability.where(doctor_id: @current_doctor)
+    puts "[show] #{@current_doctor}"
+    puts "[show] #{@dr_availabilities.inspect}"
+    respond_to do |format|
+      format.html
+      format.json { render json: @dr_availabilities }
+    end
   end
 
   def show
     @current_date = params[:clicked_date]
-    puts "[show] @current_date = #{@current_date}"
-    if @current_date
+    if @current_date 
       @current_day = get_day_of_week_from_date(@current_date)
       @appointment_times = split_schedule_into_appts(@current_day)
-      puts "[show] @current_day = #{@current_day}"
-      puts "[show] @appointment_times.inspect = #{@appointment_times.inspect}"
-      # respond_with @appointment_times
+      @dr_availability = DrAvailability
       render 'show', layout: false
     end
-    # split_schedule_into_appts(params[:clicked_date])
   end
-
 
   def new
     if @current_user.type == "Doctor"

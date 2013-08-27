@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821151158) do
+ActiveRecord::Schema.define(version: 20130827024612) do
 
   create_table "breaks", force: true do |t|
     t.time     "start_time"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20130821151158) do
 
   create_table "patient_appointments", force: true do |t|
     t.time     "start_time"
-    t.time     "end_time"
     t.boolean  "appointment_booked"
     t.date     "date"
     t.integer  "user_id"

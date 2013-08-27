@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :check_dr_schedule_made, except: [:new, :create]
   
   def index
-
+    @doctors = User.where(type: "Doctor")
   end
 
   def new

@@ -1,8 +1,15 @@
-<% @appointment_times.each do |time| %>
-  <table>
-    <tr>
-      <td><%= time.strftime("%H:%M") %><td>
-      <td><%= link_to "Book Appointment",new_patient_appointment_path %></td>
-    </tr>
-  </table>
-<% end %>
+<div id="day_calendar">
+  <% if @appointment_times == nil %>
+    <h2>No appointments available for this day</h2>
+  <% else %>
+  <% @appointment_times.each do |time| %>
+  <% formatted_time = time.strftime("%H:%M") %>
+    <table>
+      <tr>
+        <td><%= time.strftime("%H:%M") %><td>
+        <td><%= link_to "Book Appointment", new_patient_appointment_path(time: formatted_time, date: @current_date.to_date) %></td>
+      </tr>
+    </table>
+    <% end %>
+  <% end %>
+</div>

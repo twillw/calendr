@@ -25,52 +25,41 @@ formatTime = (time) ->
 
 $ ->
   tempVar = ""
+  getDrAvailabilities = ->
+    $.ajax 
+      url: "/dr_availabilities"
+      dataType: 'json'
+      success: (drAvailabilities) -> 
+        for result in drAvailabilities
+          continue if not result.clinic_open
+          day = result.day.slice(0,3)
+          clinic_open = formatTime(result.clinic_open)+"am"
+          clinic_close = formatTime(result.clinic_close)+"pm"
+          if clinic_open != null
+            $('.fc-'+day).not('.fc-day-header').append(clinic_open + '-' + clinic_close)
   
   $("#calendar")
     .fullCalendar
       dayClick: (date) ->
-        #changing colour of selected cells only
-        # if tempVar == ""
-        #   $(this).css('background-color', 'grey')
-        #   tempVar = this
-        # else
-        #   $(this).css('background-color', 'grey')
-        #   $(tempVar).css('background-color', 'white')
-        #   tempVar = this
+        # changing colour of selected cells only
+        if tempVar == ""
+          $(this).css('background-color', 'grey')
+          tempVar = this
+        else
+          $(this).css('background-color', 'grey')
+          $(tempVar).css('background-color', 'white')
+          tempVar = this
+
         $.ajax 
           data: 
-            clicked_date: date 
-          type: 'get'
+            clicked_date: date
           url: "/dr_availabilities/show"
           success: (schedule) ->
-            text = $.get('/dr_availabilities/show')
             $('#single-day').html(schedule)
-        #setting single-day calendar attributes
-        # singleDay = $("#single-day")
-        # singleDay.html(' ')
-        # $(singleDay)
-        #   .fullCalendar
-        #     defaultView: 'agendaDay'
-        #     allDaySlot: false
-        #     firstHour: 9
-        #     slotMinutes: 60
-        #   #sets single-day calendar to date selected in full calendar
-        #   .fullCalendar('gotoDate', date)
-
-  $.ajax 
-    url: "/dr_availabilities.json"
-    dataType: 'json'
-    success: (drAvailabilities) -> 
-      for result in drAvailabilities
-        day = result.day.slice(0,3)
-        clinic_open = formatTime(result.clinic_open)+"am"
-        clinic_close = formatTime(result.clinic_close)+"pm"
-        if clinic_open != null
-          $('.fc-'+day).not('.fc-day-header').append(clinic_open + '-' + clinic_close)
-
-  
-
-
+       
       
+  $('.fc-button-prev').click(getDrAvailabilities)
+  $('.fc-button-next').click(getDrAvailabilities)
+  getDrAvailabilities()
 
-
+  return
