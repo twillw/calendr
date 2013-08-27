@@ -12,7 +12,7 @@ class UsersControllerTest < ActionController::TestCase
                             address: "100 Fake Ave",
                             postal_code: "k0a1l0",
                             city: "Some_city",
-                            province: "Ontario"
+                            province: "Ontario",
                             type: "Doctor"
     }
   end 

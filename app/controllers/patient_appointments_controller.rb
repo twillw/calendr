@@ -2,7 +2,7 @@ class PatientAppointmentsController < ApplicationController
 
   include PatientAppointmentsHelper
 
-  before_action :check_current_user, :check_current_doctor
+  before_action :check_user_login, :check_current_doctor
 
   def index
     @patient_appointments = PatientAppointment.all
@@ -18,10 +18,11 @@ class PatientAppointmentsController < ApplicationController
   end
 
   def create
+    puts "#{@current_doctor}"
     @dr_availability = get_current_doctor_availability(params)
-    @patient_appointment = PatientAppointment.new(start_time: params[:time], date: params[:date], user_id: @current_user, dr_availability_id: @dr_availability, appointment_booked: true)
+    @patient_appointment = PatientAppointment.new(start_time: params[:time], date: params[:date], user_id: session[:user_id], dr_availability_id: @dr_availability, appointment_booked: true)
     if @patient_appointment.save
       redirect_to patient_appointment_path(@patient_appointment)
+    end
   end
-
 end

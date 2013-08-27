@@ -2,7 +2,6 @@
 
 one:
   start_time: 2013-08-19 18:26:15
-  end_time: 2013-08-19 18:26:15
   appointment_booked: false
   date: 2013-08-19
   user_id: 
@@ -10,7 +9,6 @@ one:
 
 two:
   start_time: 2013-08-19 18:26:15
-  end_time: 2013-08-19 18:26:15
   appointment_booked: false
   date: 2013-08-19
   user_id: 

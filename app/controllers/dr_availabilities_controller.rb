@@ -11,10 +11,7 @@ class DrAvailabilitiesController < ApplicationController
     @dr_availabilities = DrAvailability.where(doctor_id: @current_doctor)
     puts "[show] #{@current_doctor}"
     puts "[show] #{@dr_availabilities.inspect}"
-    respond_to do |format|
-      format.html
-      format.json { render json: @dr_availabilities }
-    end
+    respond_with @dr_availabilities
   end
 
   def show
