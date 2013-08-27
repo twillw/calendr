@@ -7,7 +7,7 @@
     <table>
       <tr>
         <td><%= time.strftime("%H:%M") %><td>
-        <td><%= link_to "Book Appointment", patient_appointments_path(time: formatted_time, date: @current_date.to_date), method: :post, confirm: "Confirm you want to book this Appointment" %></td>
+        <td><%= link_to "Book Appointment", new_patient_appointment_path(time: formatted_time, date: @current_date.to_date, doctor_id: @current_doctor) %></td>
       </tr>
     </table>
     <% end %>

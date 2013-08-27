@@ -56,6 +56,7 @@ $ ->
   $("#calendar")
     .fullCalendar
       dayClick: (date) ->
+        doctor_id = getUrlVars()["doctor_id"]
         # changing colour of selected cells only
         if tempVar == ""
           $(this).css('background-color', 'grey')
