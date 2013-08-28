@@ -23,6 +23,7 @@ class AppointmentBooker
     @patient_appointment.user_id = @current_user.id
     @patient_appointment.appointment_booked = true
     if @patient_appointment.save
+      NewAppointmentMailer.new_appointment_email(@patient_appointment).deliver
       @patient_appointment
     else
       nil

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your Appointment Confirmation</h1>
+    <p>
+      You have successfully setup an appointment with <%=@doctor.name %>
+    </p>
+    <p>
+      Appointment date: <%= @appointment.date %>
+      Appointment time: <%= @appointment.start_time %>
+    </p>
+  </body>
+</html>
