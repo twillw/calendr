@@ -20,7 +20,8 @@ class AppointmentBooker
     @dr_availability = get_current_doctor_availability(date)
     @patient_appointment = PatientAppointment.new(@good_params)
     @patient_appointment.dr_availability_id = @dr_availability.id
-    @patient_appointment.user_id = @current_user
+    @patient_appointment.user_id = @current_user.id
+    pry.bind
     @patient_appointment.appointment_booked = true
     if @patient_appointment.save
       @patient_appointment

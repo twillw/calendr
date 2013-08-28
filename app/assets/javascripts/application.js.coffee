@@ -48,8 +48,8 @@ $ ->
         for result in drAvailabilities
           continue if not result.clinic_open
           day = result.day.slice(0,3)
-          clinic_open = formatTime(result.clinic_open)+"am"
-          clinic_close = formatTime(result.clinic_close)+"pm"
+          clinic_open = formatTime(result.clinic_open)
+          clinic_close = formatTime(result.clinic_close)
           if clinic_open != null
             $('.fc-'+day).not('.fc-day-header').append(clinic_open + '-' + clinic_close)
   

@@ -16,8 +16,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  test "should check if time is booked" do
-  end
+
 
   private
 

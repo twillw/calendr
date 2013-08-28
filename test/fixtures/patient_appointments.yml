@@ -2,10 +2,10 @@
 
 one:
   start_time: 2013-08-19 18:26:15
-  appointment_booked: false
+  appointment_booked: true
   date: 2013-08-19
-  user_id: 
-  dr_availability_id: 
+  user_id: 1
+  dr_availability_id: 1
 
 two:
   start_time: 2013-08-19 18:26:15
