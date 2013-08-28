@@ -2,7 +2,7 @@ class PatientAppointmentsController < ApplicationController
 
   include PatientAppointmentsHelper, ApplicationHelper
 
-  before_action :check_current_doctor, except: [:create_preferences]
+  before_action :check_current_doctor
   before_action :check_user_login
 
   def index
@@ -40,14 +40,7 @@ class PatientAppointmentsController < ApplicationController
     redirect_to patient_appointment_path(@patient_appointment)
   end
 
-  def new_preferences
-    @new_preferences = PatientAppointment.new 
-  end
 
-  def create_preferences
-    create_new_preferences(params)
-    redirect_to patient_appointments_path
-  end
 
   def destroy
     PatientAppointment.delete(params[:id])
@@ -61,7 +54,4 @@ class PatientAppointmentsController < ApplicationController
     params.require(:patient_appointment).permit(:start_time, :date)
   end
 
-  def preference_time_params
-    params.require(:preference_times).permit(:start_time, :date, :appointment_booked)
-  end
 end
