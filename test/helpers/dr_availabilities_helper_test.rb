@@ -13,10 +13,4 @@ class DrAvailabilitiesHelperTest < ActionView::TestCase
     assert true
   end
 
-  test "should return false if time is free" do
-    time_booked?(Time.now, Time.now, @appt.dr_availability_id)
-    assert false
-  end
-
-
 end

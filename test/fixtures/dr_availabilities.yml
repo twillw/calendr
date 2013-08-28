@@ -3,13 +3,13 @@
 one:
   clinic_open: 2013-08-19 18:12:34
   clinic_close: 2013-08-19 18:12:34
-  day: MyString
+  day: monday
   avg_appt_time: 1
-  doctor_id: 
+  doctor: test2
 
 two:
   clinic_open: 2013-08-19 18:12:34
   clinic_close: 2013-08-19 18:12:34
   day: MyString
   avg_appt_time: 1
-  doctor_id: 
+  doctor_id: 1

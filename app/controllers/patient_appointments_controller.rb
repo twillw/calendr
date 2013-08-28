@@ -2,7 +2,7 @@ class PatientAppointmentsController < ApplicationController
 
   include PatientAppointmentsHelper
 
-  before_action :check_current_doctor
+  before_action :check_current_doctor, except: [:create_preferences]
   before_action :check_user_login
 
   def index
@@ -12,6 +12,7 @@ class PatientAppointmentsController < ApplicationController
   def show
     @patient_appointment = PatientAppointment.find(params[:id])
     @doctor = get_desired_doctor(@patient_appointment)
+    session[:current_doctor] = @doctor
   end
 
   def new
@@ -28,14 +29,7 @@ class PatientAppointmentsController < ApplicationController
   end
 
   def create_preferences
-    i = 0
-    while i < 3
-      @new_preferences = PatientAppointment.new(start_time: params[:patient_appointments][i][:start_time], dr_availability_id: get_desired_dr_availability(params[:patient_appointments][i][:day], @current_doctor))
-      @new_preferences.user_id = @current_user.id
-      @new_preferences.appointment_booked = false
-      @new_preferences.save unless @new_preferences.start_time == nil
-      i += 1
-    end
+    create_new_preferences(params)
     redirect_to patient_appointments_path
   end
 

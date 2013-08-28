@@ -2,7 +2,6 @@ module ApplicationHelper
 
   def time_booked?(time, date, dr_availability_id)
     appt = PatientAppointment.find_by(start_time: time)
-    puts "[show] #{appt.inspect}"
     if appt
       if (appt.date == date) && (appt.dr_availability_id = dr_availability_id)
         return true
@@ -19,7 +18,7 @@ module ApplicationHelper
   end
 
   def find_day_from_preference(appointment)
-    dr_availability = appointment.dr_availability_id
+    dr_availability = DrAvailability.find(appointment.dr_availability_id)
     dr_availability.day
   end
 end

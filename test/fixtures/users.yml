@@ -12,7 +12,7 @@ test1:
   type: Patient
 
 test2:
-  name: MyString
+  name: tom
   email: test2@example.com
   phone_number: 1111111111
   address: MyString
