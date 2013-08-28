@@ -27,6 +27,6 @@ module PatientAppointmentsHelper
     possible_replacements = Preference.where(date: appointment.date) 
     possible_replacements.each do |replacement|
       user = User.find(replacement.user_id)
-    UserMailer.change_appt_mail(user).deliver
+    NewAppointmentMailer.change_appt_mail(user).deliver
   end
 end
