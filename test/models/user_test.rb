@@ -30,14 +30,14 @@ class UserTest < ActiveSupport::TestCase
   test "email needs to be unique for new user" do
     assert_no_difference "User.count" do
       user_attributes = { name: "george", 
-                                    email: "test@example.com", 
-                                    password: "password",
-                                    password_confirmation: "password", 
-                                    phone_number: 5555555555, 
-                                    address: "100 Fake Ave", 
-                                    postal_code: "k0a1l0", 
-                                    city: "Some_city", 
-                                    province: "Ontario" }
+                          email: "test@example.com", 
+                          password: "password",
+                          password_confirmation: "password", 
+                          phone_number: 5555555555, 
+                          address: "100 Fake Ave", 
+                          postal_code: "k0a1l0", 
+                          city: "Some_city", 
+                          province: "Ontario" }
       new_user = User.new(user_attributes)
       new_user.save
     end
