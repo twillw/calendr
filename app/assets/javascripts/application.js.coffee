@@ -76,6 +76,7 @@ $ ->
       
   $('.fc-button-prev').click(getDrAvailabilities)
   $('.fc-button-next').click(getDrAvailabilities)
+  $('.fc-button-today').click(getDrAvailabilities)
   getDrAvailabilities()
 
   return

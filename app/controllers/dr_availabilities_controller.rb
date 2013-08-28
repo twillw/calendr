@@ -3,7 +3,7 @@ class DrAvailabilitiesController < ApplicationController
   include DrAvailabilitiesHelper
 
   before_action :check_current_doctor
-  before_action :check_user_login, except: [:index]
+  before_action :check_user_login
 
   respond_to :html, :json
 

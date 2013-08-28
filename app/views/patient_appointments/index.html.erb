@@ -1,7 +1,41 @@
+<<<<<<< HEAD
 
 <div class="row">
 <div class="col-lg-4">
 <h2>All Booked Appointments</h2>
+=======
+<!--NEED TO FIGURE THIS VIEW OUT -->
+
+<h2 class="fc-header-title">Patient Bookings for <%=@current_user.name%></h2>
+
+<div>
+  <ul class="nav nav-tabs">
+    <li class="active"><%= link_to "Today" %></li>
+    <li><%= link_to "Week" %></li>
+    <li><%= link_to "Month" %></li>
+    <li><%= link_to "All Appointments"%></li>
+  </ul>
+</div>
+
+<div>
+  <table class="table">
+    <th>
+      <td>Date</td>
+      <td>Time</td>
+      <td>Patient</td>
+    </th>
+  </table>
+  <table class="table table-striped">
+    <tbody>
+      <tr>  
+        <% @patient_appointments.each do |appointment| %>
+          <%= appointment %>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
+>>>>>>> ad8a49fc12a6359a2f9887b51a3decdcd6144a53
 
 <% @patient_appointments.each do |appointment| %>
 
@@ -10,7 +44,8 @@
   
     <p><%= appointment.start_time.strftime('%H:%M') %></p>
     
-    <p><%= find_respective_doctor(appointment).name %></p>
+    <p><%= find_respective_doctor(appointment).name %>
+      <%= link_to "Cancel Appointment", patient_appointments_path(appointment), method: :delete, data: {confirm: "Are you sure you want to cancel this appointment?" } %></p>
   </div>
   <% end %>
 <% end %>
@@ -27,3 +62,4 @@
 <% end %>
 </div>
 </div>
+

@@ -6,6 +6,12 @@ class PatientAppointmentsController < ApplicationController
   before_action :check_user_login
 
   def index
+    #NEED TO FIGURE THIS OUT ONE
+    if @current_user.type=="Patient"
+      redirect_to user_path(@current_user)
+    else
+      @patient_appointments = PatientAppointment.all
+    end
     @patient_appointments = PatientAppointment.where(user_id: @current_user.id)
   end
 
@@ -31,6 +37,12 @@ class PatientAppointmentsController < ApplicationController
   def create_preferences
     create_new_preferences(params)
     redirect_to patient_appointments_path
+  end
+
+  def destroy
+    PatientAppointment.delete(params[:id])
+    redirect_to patient_appointments_path
+    #Add funtionality to check this cancelled appointment vs preferences of other appts 
   end
 
   private

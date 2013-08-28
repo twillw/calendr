@@ -4,7 +4,8 @@
       <!-- links to show if a doctor has logged in and has a schedule already made -->
       <% if @dr_schedule_made.any? && @current_user.type == "Doctor" %>
         <li class="<%= 'active' if current_page?(user_path(@current_user)) %>"> <%= link_to "Profile", user_path(@current_user)%></li>
-        <li class="<%= 'active' if current_page?(dr_availabilities_path)%>"> <%= link_to "View Schedule", dr_availabilities_path %></li>
+        <li class="<%= 'active' if current_page?(dr_availabilities_path)||current_page?(new_patient_appointment_path)%>"> <%= link_to "Book An Appointment", dr_availabilities_path %></li>
+        <li class="<%= 'active' if current_page?(patient_appointments_path)%>"> <%= link_to "Patient Bookings", patient_appointments_path %></li>
       
       <!-- links to show if a doctor has logged in and does not have a schedule already made -->
 
@@ -17,7 +18,7 @@
       <% elsif @current_user.type=="Patient" %>
         <li class="<%= 'active' if current_page?(user_path(@current_user)) %>"> <%= link_to "Profile", user_path(@current_user)%></li>
         <li class="<%= 'active' if current_page?(patient_appointment_path(@current_user))%>"><%= link_to "View Appointments", patient_appointment_path(@current_user) %></li>
-        <li class="<%= 'active' if current_page?(users_path)%>"><%= link_to "Make An Appointment", users_path %>
+        <li class="<%= 'active' if current_page?(users_path) || current_page?(dr_availabilities_path) || current_page?(new_patient_appointment_path)%>"><%= link_to "Book An Appointment", users_path %>
         </li>
       <% end %>
   </ul>
