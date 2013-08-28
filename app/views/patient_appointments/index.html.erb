@@ -1,5 +1,29 @@
-<h1>All Booked Appointments</h1>
+<h2 class="fc-header-title">Patient Bookings for <%=@current_user.name%></h2>
 
-<% @patient_appointments.each do |appointment| %>
-  <%= appointment %>
-<% end %>
+<div>
+  <ul class="nav nav-tabs">
+    <li class="active"><%= link_to "Today" %></li>
+    <li><%= link_to "Week" %></li>
+    <li><%= link_to "Month" %></li>
+    <li><%= link_to "All Appointments"%></li>
+  </ul>
+</div>
+
+<div>
+  <table class="table">
+    <th>
+      <td>Date</td>
+      <td>Time</td>
+      <td>Patient</td>
+    </th>
+  </table>
+  <table class="table table-striped">
+    <tbody>
+      <tr>  
+        <% @patient_appointments.each do |appointment| %>
+          <%= appointment %>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>

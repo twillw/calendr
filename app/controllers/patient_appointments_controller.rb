@@ -6,7 +6,11 @@ class PatientAppointmentsController < ApplicationController
   before_action :check_user_login
 
   def index
-    @patient_appointments = PatientAppointment.all
+    if @current_user.type=="Patient"
+      redirect_to user_path(@current_user)
+    else
+      @patient_appointments = PatientAppointment.all
+    end
   end
 
   def show
