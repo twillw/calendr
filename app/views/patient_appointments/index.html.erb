@@ -13,41 +13,35 @@
 
 <div>
   <table class="table">
-    <th>
-      <td>Date</td>
-      <td>Time</td>
-      <td>Patient</td>
-    </th>
-  </table>
-  <table class="table table-striped">
-    <tbody>
-      <tr>  
-        <% @patient_appointments.each do |appointment| %>
-          <%= appointment %>
-        <% end %>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Patient</th>
       </tr>
-    </tbody>
-  </table>
+      <% c = 1 %>
+      <% @patient_appointments.each do |appointment| %>
+      
+        <tr>  
+          <% if appointment.appointment_booked %>  
+            <td><%= c %> </td>
+            <td><%= appointment.date.strftime('%A %B %-d, %Y') %></td>
+            
+            <td><%= appointment.start_time.strftime('%H:%M') %></td>
+              
+            <td><%= find_respective_doctor(appointment).name %></td>
+            <% c+=1 %>
+          <% else %>
+            <h2>My Appointment Preferences</h2>
+            <div>
+              <%= appointment.start_time.strftime('%H:%M') %>
+            </div>
+            <div>
+              <%= find_day_from_preference(appointment) %>
+            </div>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
 </div>
-
-<% @patient_appointments.each do |appointment| %>
-
-<div>
-  <% if appointment.appointment_booked %>  
-    <div><%= appointment.date.strftime('%A %B %-d, %Y') %></div>
   
-    <div><%= appointment.start_time.strftime('%H:%M') %></div>
-    
-    <div><%= find_respective_doctor(appointment).name %></div>
-  </div>
-  <% else %>
-    <h2>My Appointment Preferences</h2>
-
-    <div>
-      <%= appointment.start_time.strftime('%H:%M') %>
-    </div>
-    <div>
-      <%= find_day_from_preference(appointment) %>
-    </div>
-    <% end %>
-<% end %>
