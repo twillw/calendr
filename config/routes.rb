@@ -1,6 +1,11 @@
 FinalProject::Application.routes.draw do
-  resources :patient_appointments
-
+  resources :patient_appointments do
+    collection do 
+      get '/preferences', to: "patient_appointments#new_preferences"
+      post '/preferences', to: "patient_appointments#create_preferences"
+    end
+  end
+  
   resources :breaks
 
   resources :dr_availabilities
@@ -11,6 +16,7 @@ FinalProject::Application.routes.draw do
       get '/logout', to: "sessions#destroy"
     end
   end
+
 
   root 'home#index'
 

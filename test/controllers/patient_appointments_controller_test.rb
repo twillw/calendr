@@ -3,6 +3,7 @@ require 'test_helper'
 class PatientAppointmentsControllerTest < ActionController::TestCase
 
   test "should get index of patient appointments" do
+    login_as(users(:test1))
     get :index
     assert_response :success
   end

@@ -17,7 +17,8 @@ class DrAvailabilitiesController < ApplicationController
     if @current_date 
       @current_day = get_day_of_week_from_date(@current_date)
       @appointment_times = split_schedule_into_appts(@current_day)
-      @dr_availability = @current_schedule 
+      @dr_availability = @current_schedule
+      puts "[show] #{@dr_availability}" 
       render 'show', layout: false
     end
   end

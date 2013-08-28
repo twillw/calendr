@@ -1,3 +1,5 @@
+<!--NEED TO FIGURE THIS VIEW OUT -->
+
 <h2 class="fc-header-title">Patient Bookings for <%=@current_user.name%></h2>
 
 <div>
@@ -27,3 +29,25 @@
     </tbody>
   </table>
 </div>
+
+<% @patient_appointments.each do |appointment| %>
+
+<div>
+  <% if appointment.appointment_booked %>  
+    <div><%= appointment.date.strftime('%A %B %-d, %Y') %></div>
+  
+    <div><%= appointment.start_time.strftime('%H:%M') %></div>
+    
+    <div><%= find_respective_doctor(appointment).name %></div>
+  </div>
+  <% else %>
+    <h2>My Appointment Preferences</h2>
+
+    <div>
+      <%= appointment.start_time.strftime('%H:%M') %>
+    </div>
+    <div>
+      <%= find_day_from_preference(appointment) %>
+    </div>
+    <% end %>
+<% end %>
