@@ -14,12 +14,10 @@ module PatientAppointmentsHelper
 
   def create_new_preferences(params)
     i = 0
-    @current_doctor = session[:current_doctor]
     while i < 3
-      @day = params[:patient_appointments][i][:day].downcase!
-      @new_preferences = PatientAppointment.new(start_time: params[:patient_appointments][i][:start_time], dr_availability_id: (get_desired_dr_availability_id(@day, @current_doctor)))
-      @new_preferences.user_id = @current_user.id
-      @new_preferences.appointment_booked = false
+      @date = params[:preferences][i][:day]
+      @date = @date.to_date if @date
+      @new_preferences = Preference.new(start_time: params[:preferences][i][:start_time], date: @date, patient_appointment_id: params[:preferences][i][:patient_appointment_id])
       @new_preferences.save unless @new_preferences.start_time == nil
       i += 1
     end

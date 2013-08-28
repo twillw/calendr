@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130827024612) do
+ActiveRecord::Schema.define(version: 20130828182802) do
 
   create_table "breaks", force: true do |t|
     t.time     "start_time"
@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(version: 20130827024612) do
 
   add_index "patient_appointments", ["dr_availability_id"], name: "index_patient_appointments_on_dr_availability_id"
   add_index "patient_appointments", ["user_id"], name: "index_patient_appointments_on_user_id"
+
+  create_table "preferences", force: true do |t|
+    t.time     "start_time"
+    t.date     "date"
+    t.integer  "patient_appointment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "preferences", ["patient_appointment_id"], name: "index_preferences_on_patient_appointment_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

@@ -1,10 +1,12 @@
 FinalProject::Application.routes.draw do
+  
+
+  resources :preferences
+
   resources :patient_appointments do
-    collection do 
-      get '/preferences', to: "patient_appointments#new_preferences"
-      post '/preferences', to: "patient_appointments#create_preferences"
-    end
+    resources :preferences
   end
+  
   
   resources :breaks
 
