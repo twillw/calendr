@@ -1,5 +1,23 @@
 <h1>All Booked Appointments</h1>
 
 <% @patient_appointments.each do |appointment| %>
-  <%= appointment %>
+
+<div>
+  <% if appointment.appointment_booked %>  
+    <div><%= appointment.date.strftime('%A %B %-d, %Y') %></div>
+  
+    <div><%= appointment.start_time.strftime('%H:%M') %></div>
+    
+    <div><%= find_respective_doctor(appointment).name %></div>
+  </div>
+  <% else %>
+    <h2>My Appointment Preferences</h2>
+
+    <div>
+      <%= appointment.start_time.strftime('%H:%M') %>
+    </div>
+    <div>
+      <%= find_day_from_preference(appointment) %>
+    </div>
+    <% end %>
 <% end %>

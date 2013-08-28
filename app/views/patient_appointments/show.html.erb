@@ -8,3 +8,50 @@
 <div>
   On <%= @patient_appointment.date.strftime('%A %B %-d, %Y') %>
 </div>
+
+
+<h4>Would you like to be notified if an earlier and more convenient appointment becomes available?</h4>
+
+<%= form_tag "/patient_appointments/preferences", html: {class: "form-horizontal"} do %>
+  <% 3.times do %>
+    <div class="row">  
+        
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4 text-right">
+              <label class="control-label">Start time: </label> 
+            </div>
+            <div class="col-lg-4">
+              <%= text_field_tag "patient_appointments[][start_time]","",class: "form-control"%>
+            </div>
+            <div class="col-lg-4 text-left">
+              (24-hr clock)
+            </div>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4 text-right">
+              <label class="control-label">Day of the week: </label>
+            </div>
+            <div class="col-lg-4">
+              <%= text_field_tag "patient_appointments[][day]","",class: "form-control" %> 
+            </div>
+            <div class="col-lg-4">
+            </div>
+          </div>
+        </div>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4 center">
+        <%= submit_tag "Submit", class: "btn btn-success" %>
+      </div>
+      <div class="col-lg-4"></div>
+    </div>
+  </div>
+
+<% end %>

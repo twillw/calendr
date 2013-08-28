@@ -1,15 +1,25 @@
 module ApplicationHelper
 
-  def time_booked?(time, date, dr_availability)
-    appt = PatientAppointment.where(start_time: time)
+  def time_booked?(time, date, dr_availability_id)
+    appt = PatientAppointment.find_by(start_time: time)
+    puts "[show] #{appt.inspect}"
     if appt
-      appt.each do |appt|
-        if appt.dr_availability_id == dr_availability && appt.date == date && appt.appointment_booked == true
-          return true
-        else
-          return false
-        end
+      if (appt.date == date) && (appt.dr_availability_id = dr_availability_id)
+        return true
+      else
+        return false
       end
     end
+  end
+
+
+  def find_respective_doctor(appointment)
+    dr_availability = DrAvailability.find(appointment.dr_availability_id)
+    User.find(dr_availability.doctor_id)
+  end
+
+  def find_day_from_preference(appointment)
+    dr_availability = appointment.dr_availability_id
+    dr_availability.day
   end
 end
