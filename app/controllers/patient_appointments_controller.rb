@@ -43,9 +43,14 @@ class PatientAppointmentsController < ApplicationController
 
 
   def destroy
-    PatientAppointment.delete(params[:id])
+    @cancelled_appointment = PatientAppointment.find(params[:id])
+    send_mail_to_replacement_patients(@cancelled_appointment)    
+
+    @cancelled_appointment.delete(params[:id])
+  end
+
+
     redirect_to patient_appointments_path
-    #Add funtionality to check this cancelled appointment vs preferences of other appts 
   end
 
   private

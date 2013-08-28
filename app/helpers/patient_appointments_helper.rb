@@ -22,4 +22,11 @@ module PatientAppointmentsHelper
       i += 1
     end
   end
+
+  def send_mail_to_replacement_patients(appointment)
+    possible_replacements = Preference.where(date: appointment.date) 
+    possible_replacements.each do |replacement|
+      user = User.find(replacement.user_id)
+    UserMailer.change_appt_mail(user).deliver
+  end
 end
