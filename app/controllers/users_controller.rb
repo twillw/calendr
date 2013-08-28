@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :check_user_login, except: [:new, :create]
+  before_action :check_user_login, :check_current_doctor, except: [:new, :create]
   before_action :check_dr_schedule_made, except: [:new, :create]
   
   def index
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def show
     if !@current_user
       redirect_to login_users_path
-    #@dr_availabilities = DrAvailability.where(id: @current_user)
+      @dr_availabilities = DrAvailability.where(id: @current_user)
     end
   end
 

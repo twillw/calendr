@@ -1,6 +1,3 @@
-
-<!--NEED TO FIGURE THIS VIEW OUT -->
-
 <h2 class="fc-header-title">Patient Bookings for <%=@current_user.name%></h2>
 
 <div>
@@ -18,7 +15,12 @@
         <th>#</th>
         <th>Date</th>
         <th>Time</th>
-        <th>Patient</th>
+        <% if @current_user.type=="Patient" %>
+          <th>Doctor</th>
+        <% elsif @current_user.type=="Doctor" %>
+          <th>Booked By</th>
+        <% end %>
+
       </tr>
       <% c = 1 %>
       <% @patient_appointments.each do |appointment| %>
@@ -30,8 +32,13 @@
             
             <td><%= appointment.start_time.strftime('%H:%M') %></td>
               
-            <td><%= find_respective_doctor(appointment).name %></td>
-            <td><%= link_to "Cancel Appointment", patient_appointments_path(appointment), method: :delete, data: {confirm: "Are you sure you want to cancel this appointment?" } %></td>
+            <% if @current_user.type=="Patient"%>
+
+              <td><%= find_respective_doctor(appointment).name %></td>
+            <% elsif @current_user.type=="Doctor" %>
+              <td><%= User.find(appointment.user_id).name %></td>
+            <% end %>
+            <td><%= link_to "Cancel Appointment", appointment, method: :delete, data: {confirm: "Are you sure you want to cancel this appointment?" },class: "btn btn-danger btn-xs" %></td>
             <% c+=1 %>
           <% end %>
         </tr>

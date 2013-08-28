@@ -37,6 +37,8 @@ class DrAvailabilitiesController < ApplicationController
   end
 
   def edit
+    @days_of_the_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    @dr_availabilities = DrAvailability.find(params[:id])
   end
 
   private

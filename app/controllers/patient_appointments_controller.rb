@@ -1,6 +1,6 @@
 class PatientAppointmentsController < ApplicationController  
 
-  include PatientAppointmentsHelper
+  include PatientAppointmentsHelper, ApplicationHelper
 
   before_action :check_current_doctor
   before_action :check_user_login
@@ -12,7 +12,17 @@ class PatientAppointmentsController < ApplicationController
     # else
     #   @patient_appointments = PatientAppointment.all
     # end
-    @patient_appointments = PatientAppointment.where(user_id: @current_user.id)
+    if @current_user.type=="Patient"
+      @patient_appointments = PatientAppointment.where(user_id: @current_user.id)
+    elsif @current_user.type=="Doctor"
+      all_patient_appointments = PatientAppointment.all
+      @patient_appointments=[]
+      all_patient_appointments.each do |appointment|
+        if find_respective_doctor(appointment) == @current_user
+          @patient_appointments.push(appointment)
+        end
+      end
+    end
   end
 
   def show
