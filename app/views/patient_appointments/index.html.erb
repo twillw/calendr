@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 
-<div class="row">
-<div class="col-lg-4">
-<h2>All Booked Appointments</h2>
-=======
 <!--NEED TO FIGURE THIS VIEW OUT -->
 
 <h2 class="fc-header-title">Patient Bookings for <%=@current_user.name%></h2>
@@ -19,47 +14,27 @@
 
 <div>
   <table class="table">
-    <th>
-      <td>Date</td>
-      <td>Time</td>
-      <td>Patient</td>
-    </th>
-  </table>
-  <table class="table table-striped">
-    <tbody>
-      <tr>  
-        <% @patient_appointments.each do |appointment| %>
-          <%= appointment %>
-        <% end %>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Patient</th>
       </tr>
-    </tbody>
-  </table>
+      <% c = 1 %>
+      <% @patient_appointments.each do |appointment| %>
+      
+        <tr>  
+          <% if appointment.appointment_booked %>  
+            <td><%= c %> </td>
+            <td><%= appointment.date.strftime('%A %B %-d, %Y') %></td>
+            
+            <td><%= appointment.start_time.strftime('%H:%M') %></td>
+              
+            <td><%= find_respective_doctor(appointment).name %></td>
+            <td><%= link_to "Cancel Appointment", patient_appointments_path(appointment), method: :delete, data: {confirm: "Are you sure you want to cancel this appointment?" } %></td>
+            <% c+=1 %>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
 </div>
->>>>>>> ad8a49fc12a6359a2f9887b51a3decdcd6144a53
-
-<% @patient_appointments.each do |appointment| %>
-
-  <% if appointment.appointment_booked %>  
-    <p><%= appointment.date.strftime('%A %B %-d, %Y') %></p>
-  
-    <p><%= appointment.start_time.strftime('%H:%M') %></p>
-    
-    <p><%= find_respective_doctor(appointment).name %>
-      <%= link_to "Cancel Appointment", patient_appointments_path(appointment), method: :delete, data: {confirm: "Are you sure you want to cancel this appointment?" } %></p>
-  </div>
-  <% end %>
-<% end %>
-
-<div class="col-lg-4">
-  <h2>My Preferred Times</h2>
-  <% @patient_appointments.each do |appointment| %>
-  <% if appointment.appointment_booked == false %>
-    <p>
-      <%= appointment.start_time.strftime('%H:%M') %>
-      <%= find_day_from_preference(appointment).capitalize %>
-    </p>
-  <% end %>
-<% end %>
-</div>
-</div>
-
