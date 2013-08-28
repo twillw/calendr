@@ -10,6 +10,6 @@
   </address>
   <%=link_to "Edit Profile", edit_user_path(@current_user), class: "btn btn-success btn-xs"%>
   <% if @current_user.type=="Doctor" %>
-    <%= link_to "Edit Online Clinic", edit_dr_availability_path(@current_user), class: "btn btn-success btn-xs" %>
+    <%= link_to "Edit Online Clinic", "#", class: "btn btn-success btn-xs" %>
   <% end %>
 </div>
