@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :check_user_login, except: [:create]
+  before_action :check_user_login, except: [:create, :destroy]
   
   def new
       if @current_user

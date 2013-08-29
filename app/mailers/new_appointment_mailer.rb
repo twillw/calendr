@@ -9,4 +9,13 @@ class NewAppointmentMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Confirmation of Your Appointment')
   end
 
+  def change_appt_mail(user, appointment, replaced_appointment) 
+    @user = user
+    @appointment = appointment
+    @date = @appointment.date
+    @start_time = @appointment.start_time
+    @replaced_appointment = replaced_appointment
+    mail(to: @user.email, subject: "Would you like to reschedule your Doctor's appointment?") 
+  end
+
 end

@@ -26,7 +26,12 @@ class PatientAppointmentsController < ApplicationController
   end
 
   def new
-    @patient_appointment = PatientAppointment.new(start_time: params[:time], date: params[:date], user_id: @current_user, dr_availability_id: @dr_availability, appointment_booked: true)
+    if params[:replaced_appointment]
+      @patient_appointment = PatientAppointment.new(start_time: params[:start_time], date:params[:date])
+      PatientAppointment.find(params[:replaced_appointment]).delete
+    else
+      @patient_appointment = PatientAppointment.new(start_time: params[:time], date: params[:date], user_id: @current_user, dr_availability_id: @dr_availability, appointment_booked: true)
+    end
   end
 
   def create
@@ -39,11 +44,7 @@ class PatientAppointmentsController < ApplicationController
   def destroy
     @cancelled_appointment = PatientAppointment.find(params[:id])
     send_mail_to_replacement_patients(@cancelled_appointment)    
-
-    @cancelled_appointment.delete(params[:id])
-  end
-
-
+    @cancelled_appointment.delete
     redirect_to patient_appointments_path
   end
 

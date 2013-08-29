@@ -1,0 +1,9 @@
+<h1>Greetings <%= @user.name %></h1>
+
+<p>There has been an appointment cancellation that matches your chosen preferences</p>
+
+<p>The appointment is on <%= @date.strftime("%A %B %-d, %Y") %> at <%= @start_time.strftime("%H:%M") %></p>
+
+<p>This appointment will be filled on a first-come, first-served basis.</p>
+
+<%= link_to "Book new appointment and cancel my old one", new_patient_appointment_url(start_time: @start_time, date: @date, replaced_appointment: @replaced_appointment, session[:patient_id] = @user.id) %>
