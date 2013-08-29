@@ -19,6 +19,7 @@ class PatientAppointmentsController < ApplicationController
         end
       end
     end
+    @patient_appointments = @patient_appointments.sort_by{|appointment| appointment.date}
   end
 
   def show

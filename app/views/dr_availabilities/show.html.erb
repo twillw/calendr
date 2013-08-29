@@ -14,7 +14,7 @@
           <% elsif @current_date.to_date <= Time.now %>
             <td>Time unavailable</td>
           <% else %>
-            <td><%= link_to "Book Appointment", new_patient_appointment_path(time: formatted_time, date: @current_date.to_date, doctor_id: @current_doctor) , class: "btn btn-success btn-xs"%></td>
+            <td><%= link_to "Book Appointment", new_patient_appointment_path(time: formatted_time, date: @current_date.to_date, doctor_id: @current_doctor), class: "btn btn-success btn-xs" %></td>
           <% end %>
       </tr>
     </table>
