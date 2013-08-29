@@ -5,6 +5,8 @@ class PatientAppointmentsController < ApplicationController
   before_action :check_current_doctor
   before_action :check_user_login
 
+  respond_to :html, :json
+
   def index
     if @current_user.type=="Patient"
       @patient_appointments = PatientAppointment.where(user_id: @current_user.id)
@@ -39,11 +41,15 @@ class PatientAppointmentsController < ApplicationController
     redirect_to patient_appointment_path(@patient_appointment)
   end
 
-  def destroy
+  def destroy 
     @cancelled_appointment = PatientAppointment.find(params[:id])
+    @appt_id = @cancelled_appointment.id
+    Preference.delete_all(patient_appointment_id: @appt_id)
     send_mail_to_replacement_patients(@cancelled_appointment)    
     @cancelled_appointment.delete
-    redirect_to patient_appointments_path
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

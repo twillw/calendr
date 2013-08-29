@@ -25,11 +25,13 @@ module PatientAppointmentsConcern
   end
 
   def send_mail_to_replacement_patients(appointment)
-    possible_replacements = Preference.where(date: appointment.date) 
-    possible_replacements.each do |replacement|
-      appt = PatientAppointment.find(replacement.patient_appointment_id)
-      user = User.find(appt.user_id)
-    NewAppointmentMailer.change_appt_mail(user, appointment, appt).deliver
+    possible_replacements = Preference.where(date: appointment.date, start_time: appointment.start_time) 
+    if possible_replacements.any?
+      possible_replacements.each do |replacement|
+        appt = PatientAppointment.find(replacement.patient_appointment_id)
+        user = User.find(appt.user_id)
+      NewAppointmentMailer.change_appt_mail(user, appointment, appt).deliver
+      end
     end
   end
 end
