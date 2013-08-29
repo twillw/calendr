@@ -1,6 +1,6 @@
 class PatientAppointmentsController < ApplicationController  
 
-  include PatientAppointmentsHelper, ApplicationHelper
+  include PatientAppointmentsConcern
 
   before_action :check_current_doctor
   before_action :check_user_login
@@ -39,8 +39,6 @@ class PatientAppointmentsController < ApplicationController
     redirect_to patient_appointment_path(@patient_appointment)
   end
 
-
-
   def destroy
     @cancelled_appointment = PatientAppointment.find(params[:id])
     send_mail_to_replacement_patients(@cancelled_appointment)    
@@ -52,6 +50,11 @@ class PatientAppointmentsController < ApplicationController
 
   def patient_appointment_params
     params.require(:patient_appointment).permit(:start_time, :date)
+  end
+
+  def find_respective_doctor(appointment)
+    dr_availability = DrAvailability.find(appointment.dr_availability_id)
+    User.find(dr_availability.doctor_id)
   end
 
 end

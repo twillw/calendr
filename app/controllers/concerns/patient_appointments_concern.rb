@@ -16,21 +16,20 @@ module PatientAppointmentsConcern
   def create_new_preferences(params)
     i = 0
     while i < 3
-      @date = params[:preferences][i][:day]
+      @date = params[:preferences][i][:date]
       @date = @date.to_date if @date
       @new_preferences = Preference.new(start_time: params[:preferences][i][:start_time], date: @date, patient_appointment_id: params[:preferences][i][:patient_appointment_id])
-      @new_preferences.save unless @new_preferences.start_time == nil
+      @new_preferences.save 
       i += 1
     end
   end
 
   def send_mail_to_replacement_patients(appointment)
-    possible_replacements = Preference.where(date: appointment.date, start_time: appointment.start_time) 
-    debugger
+    possible_replacements = Preference.where(date: appointment.date) 
     possible_replacements.each do |replacement|
-      puts "[show] #{replacements}"
-      user = replacement.user
-      NewAppointmentMailer.change_appt_mail(user, appointment).deliver
+      appt = PatientAppointment.find(replacement.patient_appointment_id)
+      user = User.find(appt.user_id)
+    NewAppointmentMailer.change_appt_mail(user, appointment, appt).deliver
     end
   end
 end

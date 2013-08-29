@@ -1,6 +1,6 @@
 class DrAvailabilitiesController < ApplicationController
 
-  include DrAvailabilitiesHelper
+  include DrAvailabilitiesConcern
 
   before_action :check_current_doctor
   before_action :check_user_login

@@ -11,7 +11,6 @@ module ApplicationHelper
     end
   end
 
-
   def find_respective_doctor(appointment)
     dr_availability = DrAvailability.find(appointment.dr_availability_id)
     User.find(dr_availability.doctor_id)

@@ -1,6 +1,6 @@
 class PreferencesController < ApplicationController
 
-  include PatientAppointmentsHelper
+  include PatientAppointmentsConcern
 
   before_action :check_current_doctor, except: [:create_preferences]
   before_action :check_user_login
